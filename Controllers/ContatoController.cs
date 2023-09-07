@@ -30,7 +30,8 @@ namespace ProjetoMVC.Controllers
         [HttpPost]
         public IActionResult Criar(Contato contato)
         {
-            if(ModelState.IsValid){
+            if(ModelState.IsValid)
+            {
                 _context.Contatos.Add(contato);
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));

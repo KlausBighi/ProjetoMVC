@@ -5,7 +5,7 @@
 namespace ProjetoMVC.Migrations
 {
     /// <inheritdoc />
-    public partial class AdicionaTabelaContato : Migration
+    public partial class AdicionaTabelas : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,6 +24,22 @@ namespace ProjetoMVC.Migrations
                 {
                     table.PrimaryKey("PK_Contatos", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Produtos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Valor = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Validade = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Ativo = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Produtos", x => x.Id);
+                });
         }
 
         /// <inheritdoc />
@@ -31,6 +47,9 @@ namespace ProjetoMVC.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Contatos");
+
+            migrationBuilder.DropTable(
+                name: "Produtos");
         }
     }
 }

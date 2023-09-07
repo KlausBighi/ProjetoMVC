@@ -11,8 +11,8 @@ using ProjetoMVC.Context;
 namespace ProjetoMVC.Migrations
 {
     [DbContext(typeof(AgendaContext))]
-    [Migration("20230816160330_AdicionaTabelaContato")]
-    partial class AdicionaTabelaContato
+    [Migration("20230907201652_AdicionaTabelas")]
+    partial class AdicionaTabelas
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,6 +44,31 @@ namespace ProjetoMVC.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Contatos");
+                });
+
+            modelBuilder.Entity("ProjetoMVC.Models.Produto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Validade")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Produtos");
                 });
 #pragma warning restore 612, 618
         }
